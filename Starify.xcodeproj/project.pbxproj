@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		748213E21AAE70FC00581CE6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213E11AAE70FC00581CE6 /* main.m */; };
+		748213E51AAE70FC00581CE6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213E41AAE70FC00581CE6 /* AppDelegate.m */; };
+		748213E81AAE70FC00581CE6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213E71AAE70FC00581CE6 /* ViewController.m */; };
+		748213EB1AAE70FC00581CE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 748213E91AAE70FC00581CE6 /* Main.storyboard */; };
+		748213ED1AAE70FC00581CE6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 748213EC1AAE70FC00581CE6 /* Images.xcassets */; };
+		748213F01AAE70FC00581CE6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 748213EE1AAE70FC00581CE6 /* LaunchScreen.xib */; };
+		748213FC1AAE70FC00581CE6 /* StarifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213FB1AAE70FC00581CE6 /* StarifyTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		748213F61AAE70FC00581CE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 748213D41AAE70FC00581CE6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 748213DB1AAE70FC00581CE6;
+			remoteInfo = Starify;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		748213DC1AAE70FC00581CE6 /* Starify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		748213E01AAE70FC00581CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		748213E11AAE70FC00581CE6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		748213E31AAE70FC00581CE6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		748213E41AAE70FC00581CE6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		748213E61AAE70FC00581CE6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		748213E71AAE70FC00581CE6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		748213EA1AAE70FC00581CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		748213EC1AAE70FC00581CE6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		748213EF1AAE70FC00581CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		748213F51AAE70FC00581CE6 /* StarifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		748213FA1AAE70FC00581CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		748213FB1AAE70FC00581CE6 /* StarifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarifyTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		748213D91AAE70FC00581CE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748213F21AAE70FC00581CE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		748213D31AAE70FC00581CE6 = {
+			isa = PBXGroup;
+			children = (
+				748213DE1AAE70FC00581CE6 /* Starify */,
+				748213F81AAE70FC00581CE6 /* StarifyTests */,
+				748213DD1AAE70FC00581CE6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		748213DD1AAE70FC00581CE6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				748213DC1AAE70FC00581CE6 /* Starify.app */,
+				748213F51AAE70FC00581CE6 /* StarifyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		748213DE1AAE70FC00581CE6 /* Starify */ = {
+			isa = PBXGroup;
+			children = (
+				748213E31AAE70FC00581CE6 /* AppDelegate.h */,
+				748213E41AAE70FC00581CE6 /* AppDelegate.m */,
+				748213E61AAE70FC00581CE6 /* ViewController.h */,
+				748213E71AAE70FC00581CE6 /* ViewController.m */,
+				748213E91AAE70FC00581CE6 /* Main.storyboard */,
+				748213EC1AAE70FC00581CE6 /* Images.xcassets */,
+				748213EE1AAE70FC00581CE6 /* LaunchScreen.xib */,
+				748213DF1AAE70FC00581CE6 /* Supporting Files */,
+			);
+			path = Starify;
+			sourceTree = "<group>";
+		};
+		748213DF1AAE70FC00581CE6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				748213E01AAE70FC00581CE6 /* Info.plist */,
+				748213E11AAE70FC00581CE6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		748213F81AAE70FC00581CE6 /* StarifyTests */ = {
+			isa = PBXGroup;
+			children = (
+				748213FB1AAE70FC00581CE6 /* StarifyTests.m */,
+				748213F91AAE70FC00581CE6 /* Supporting Files */,
+			);
+			path = StarifyTests;
+			sourceTree = "<group>";
+		};
+		748213F91AAE70FC00581CE6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				748213FA1AAE70FC00581CE6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		748213DB1AAE70FC00581CE6 /* Starify */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 748213FF1AAE70FC00581CE6 /* Build configuration list for PBXNativeTarget "Starify" */;
+			buildPhases = (
+				748213D81AAE70FC00581CE6 /* Sources */,
+				748213D91AAE70FC00581CE6 /* Frameworks */,
+				748213DA1AAE70FC00581CE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Starify;
+			productName = Starify;
+			productReference = 748213DC1AAE70FC00581CE6 /* Starify.app */;
+			productType = "com.apple.product-type.application";
+		};
+		748213F41AAE70FC00581CE6 /* StarifyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 748214021AAE70FC00581CE6 /* Build configuration list for PBXNativeTarget "StarifyTests" */;
+			buildPhases = (
+				748213F11AAE70FC00581CE6 /* Sources */,
+				748213F21AAE70FC00581CE6 /* Frameworks */,
+				748213F31AAE70FC00581CE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				748213F71AAE70FC00581CE6 /* PBXTargetDependency */,
+			);
+			name = StarifyTests;
+			productName = StarifyTests;
+			productReference = 748213F51AAE70FC00581CE6 /* StarifyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		748213D41AAE70FC00581CE6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = ChaunceyLu;
+				TargetAttributes = {
+					748213DB1AAE70FC00581CE6 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					748213F41AAE70FC00581CE6 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 748213DB1AAE70FC00581CE6;
+					};
+				};
+			};
+			buildConfigurationList = 748213D71AAE70FC00581CE6 /* Build configuration list for PBXProject "Starify" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 748213D31AAE70FC00581CE6;
+			productRefGroup = 748213DD1AAE70FC00581CE6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				748213DB1AAE70FC00581CE6 /* Starify */,
+				748213F41AAE70FC00581CE6 /* StarifyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		748213DA1AAE70FC00581CE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748213EB1AAE70FC00581CE6 /* Main.storyboard in Resources */,
+				748213F01AAE70FC00581CE6 /* LaunchScreen.xib in Resources */,
+				748213ED1AAE70FC00581CE6 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748213F31AAE70FC00581CE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		748213D81AAE70FC00581CE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748213E81AAE70FC00581CE6 /* ViewController.m in Sources */,
+				748213E51AAE70FC00581CE6 /* AppDelegate.m in Sources */,
+				748213E21AAE70FC00581CE6 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		748213F11AAE70FC00581CE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				748213FC1AAE70FC00581CE6 /* StarifyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		748213F71AAE70FC00581CE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 748213DB1AAE70FC00581CE6 /* Starify */;
+			targetProxy = 748213F61AAE70FC00581CE6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		748213E91AAE70FC00581CE6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				748213EA1AAE70FC00581CE6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		748213EE1AAE70FC00581CE6 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				748213EF1AAE70FC00581CE6 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		748213FD1AAE70FC00581CE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		748213FE1AAE70FC00581CE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		748214001AAE70FC00581CE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Starify/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		748214011AAE70FC00581CE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Starify/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		748214031AAE70FC00581CE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = StarifyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Starify.app/Starify";
+			};
+			name = Debug;
+		};
+		748214041AAE70FC00581CE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = StarifyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Starify.app/Starify";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		748213D71AAE70FC00581CE6 /* Build configuration list for PBXProject "Starify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				748213FD1AAE70FC00581CE6 /* Debug */,
+				748213FE1AAE70FC00581CE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		748213FF1AAE70FC00581CE6 /* Build configuration list for PBXNativeTarget "Starify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				748214001AAE70FC00581CE6 /* Debug */,
+				748214011AAE70FC00581CE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		748214021AAE70FC00581CE6 /* Build configuration list for PBXNativeTarget "StarifyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				748214031AAE70FC00581CE6 /* Debug */,
+				748214041AAE70FC00581CE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 748213D41AAE70FC00581CE6 /* Project object */;
+}
