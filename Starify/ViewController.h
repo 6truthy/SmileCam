@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FaceppAPI.h"
 
-@interface ViewController : UIViewController
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/core/core.hpp"
+#include "opencv2/video/tracking.hpp"
+#include "stack"
+#include "iostream"
+@interface ViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 
 @end
