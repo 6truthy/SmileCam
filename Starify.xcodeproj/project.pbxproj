@@ -20,7 +20,6 @@
 		746D59501AAF793300704A50 /* FaceppError.m in Sources */ = {isa = PBXBuildFile; fileRef = 746D59431AAF793300704A50 /* FaceppError.m */; };
 		746D59511AAF793300704A50 /* FaceppResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 746D59451AAF793300704A50 /* FaceppResult.m */; };
 		746D59581AAFA69500704A50 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 746D59571AAFA69500704A50 /* MBProgressHUD.m */; };
-		746D595A1AAFA7BB00704A50 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746D59591AAFA7BB00704A50 /* opencv2.framework */; };
 		746D595C1AAFA8FB00704A50 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746D595B1AAFA8FB00704A50 /* AssetsLibrary.framework */; };
 		748213E21AAE70FC00581CE6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213E11AAE70FC00581CE6 /* main.m */; };
 		748213E51AAE70FC00581CE6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213E41AAE70FC00581CE6 /* AppDelegate.m */; };
@@ -30,6 +29,7 @@
 		748213F01AAE70FC00581CE6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 748213EE1AAE70FC00581CE6 /* LaunchScreen.xib */; };
 		748213FC1AAE70FC00581CE6 /* StarifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213FB1AAE70FC00581CE6 /* StarifyTests.m */; };
 		748BBB861AB54B69001C296E /* smileface.txt in Resources */ = {isa = PBXBuildFile; fileRef = 748BBB851AB54B69001C296E /* smileface.txt */; };
+		C2FBCCB51AB646CF0096B022 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FBCCB41AB646CF0096B022 /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +69,6 @@
 		746D59451AAF793300704A50 /* FaceppResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceppResult.m; sourceTree = "<group>"; };
 		746D59561AAFA69500704A50 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		746D59571AAFA69500704A50 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		746D59591AAFA7BB00704A50 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
 		746D595B1AAFA8FB00704A50 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		748213DC1AAE70FC00581CE6 /* Starify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		748213E01AAE70FC00581CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		748213FA1AAE70FC00581CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		748213FB1AAE70FC00581CE6 /* StarifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarifyTests.m; sourceTree = "<group>"; };
 		748BBB851AB54B69001C296E /* smileface.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = smileface.txt; sourceTree = "<group>"; };
+		C2FBCCB41AB646CF0096B022 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = "../../../软件/opencv2.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				746D595A1AAFA7BB00704A50 /* opencv2.framework in Frameworks */,
+				C2FBCCB51AB646CF0096B022 /* opencv2.framework in Frameworks */,
 				746D595C1AAFA8FB00704A50 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,7 +159,7 @@
 			children = (
 				748BBB841AB54B57001C296E /* ref */,
 				746D595B1AAFA8FB00704A50 /* AssetsLibrary.framework */,
-				746D59591AAFA7BB00704A50 /* opencv2.framework */,
+				C2FBCCB41AB646CF0096B022 /* opencv2.framework */,
 				748213DE1AAE70FC00581CE6 /* Starify */,
 				748213F81AAE70FC00581CE6 /* StarifyTests */,
 				748213DD1AAE70FC00581CE6 /* Products */,
@@ -471,6 +471,7 @@
 					development,
 					/Users/chaunceylu/Documents/iOS,
 					development,
+					"/Users/zisting/Documents/软件",
 				);
 				INFOPLIST_FILE = Starify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -488,6 +489,7 @@
 					development,
 					/Users/chaunceylu/Documents/iOS,
 					development,
+					"/Users/zisting/Documents/软件",
 				);
 				INFOPLIST_FILE = Starify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

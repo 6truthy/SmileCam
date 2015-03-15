@@ -246,6 +246,7 @@
                 sx[i] = [[landmark objectForKey:landmarkKeys[i]][@"x"] doubleValue];
                 sy[i] = [[landmark objectForKey:landmarkKeys[i]][@"y"] doubleValue];
             }
+            inputpoint.clear();
             for (int i = 0; i<83; i++)
             {
                 inputpoint.push_back(Point2d(sx[i], sy[i]));
@@ -428,7 +429,7 @@ void ThinPlateSpline(const vector<Point2f> &pointsSrc,const vector<Point2f> &poi
     for (int i = 0; i < p + 3; i++)
     {
         //for ill-conditioned matrix, remove the trival eigenvalues
-        if (d.at<float>(i,0) < 1e-6)
+        if (d.at<float>(i,0) < 1)
         {
             continue;
         }
