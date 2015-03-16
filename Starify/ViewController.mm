@@ -22,10 +22,10 @@
 @end
 
 @implementation ViewController {
-    UIButton *pickFromLib, *takePhoto, *retake;
+    UIButton *pickFromLib, *takePhoto, *retake, *compare;
     UIImagePickerController *imagePicker;
     CGSize screenSize;
-    UIImageView *imageView;
+    UIImageView *imageView, *originView;
     UISlider *slider;
     cv::Mat I1;
     std::vector<cv::Point2f> inputpoint;
@@ -40,25 +40,33 @@
     NSString *API_KEY = @"a5be9907f9aff665d502fa003d8128b9", *API_SECRET = @"0QB5uV-A_XjxzwTf-Z9KHqpGdZlNlxAd";
     imagePicker = [[UIImagePickerController alloc] init];
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.width / 360 * 480)];
+    originView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.width / 360 * 480)];
     pickFromLib = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     takePhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     retake = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    compare = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     slider = [[UISlider alloc] init];
     slider.frame = CGRectMake(0.0, 480, screenSize.width, heightOffset40);
     [pickFromLib setTitle:@"从相册里选择" forState:UIControlStateNormal];
     [takePhoto setTitle:@"拍照" forState:UIControlStateNormal];
     [retake setTitle:@"重新选择" forState:UIControlStateNormal];
+    [compare setTitle:@"对比原图" forState:UIControlStateNormal];
     [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:(UIControlEventTouchUpInside | UIControlEventTouchUpOutside)];
     pickFromLib.frame = CGRectMake(screenSize.width / 3, heightOffset280, screenSize.width / 3, heightOffset40);
     takePhoto.frame = CGRectMake(screenSize.width / 3, heightOffset320, screenSize.width / 3, heightOffset40);
     retake.frame = CGRectMake(0.0, screenSize.height - heightOffset40, screenSize.width / 2, heightOffset40);
+    compare.frame = CGRectMake(screenSize.width / 2, screenSize.height - heightOffset40, screenSize.width / 2, heightOffset40);
     [self.view addSubview:pickFromLib];
     [self.view addSubview:takePhoto];
     [self.view addSubview:imageView];
     [self.view addSubview:slider];
     [self.view addSubview:retake];
+    [self.view addSubview:compare];
+    [self.view addSubview:originView];
     slider.hidden = YES;
     retake.hidden = YES;
+    originView.hidden = YES;
+    compare.hidden = YES;
     [pickFromLib addTarget:self
                     action:@selector(pickFromLibraryButtonPressed)
           forControlEvents:UIControlEventTouchUpInside];
@@ -68,6 +76,12 @@
     [retake addTarget:self
                action:@selector(retakeButtonClicked)
      forControlEvents:UIControlEventTouchUpInside];
+    [compare addTarget:self
+                action:@selector(compareButtonUp)
+      forControlEvents:UIControlEventTouchUpInside];
+    [compare addTarget:self
+                action:@selector(compareButtonDown)
+      forControlEvents:UIControlEventTouchDown];
     [FaceppAPI initWithApiKey:API_KEY andApiSecret:API_SECRET andRegion:APIServerRegionCN];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -91,6 +105,7 @@
     imageView.hidden = YES;
     slider.hidden = YES;
     retake.hidden = YES;
+    compare.hidden = YES;
 }
 -(void)pickFromLibraryButtonPressed {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
@@ -251,6 +266,7 @@
             {
                 inputpoint.push_back(Point2d(sx[i], sy[i]));
             }
+            originView.image = image;
             I1 = [self cvMatFromUIImage:image];
             initialize(I1,inputpoint);
             cv::Mat I2 = smile(I1, 1.3);
@@ -269,10 +285,18 @@
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     retake.hidden = NO;
+    imageView.hidden = NO;
+    compare.hidden = NO;
 }
 - (void)sliderValueChanged {
     cv::Mat I2 = smile(I1, slider.value * 1.3);
     [imageView setImage:[self UIImageFromCVMat:I2]];
+}
+-(void)compareButtonUp {
+    originView.hidden = YES;
+}
+-(void)compareButtonDown {
+    originView.hidden = NO;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
