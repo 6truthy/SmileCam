@@ -557,11 +557,11 @@ void initialize(Mat image, vector<Point2f> inputpoint)
     
     vector<Point2f> outputpoint, meanpoint;
     Mat tform = estimateRigidTransform(inputpoint, standardface, false);
-    Mat tform_inv = estimateRigidTransform(standardface, inputpoint,false);
+    
+    transform(inputpoint, meanpoint, tform);
+    Mat tform_inv = estimateRigidTransform(meanpoint, inputpoint,false);
     double a = tform_inv.at<double>(0, 0), b = tform_inv.at<double>(0,1);
     float scale =  sqrt(a*a + b*b);
-    transform(inputpoint, meanpoint, tform);
-    
     
     for (int i = 0; i<meanpoint.size(); i++)
         meanpoint[i] = meanpoint[i] + 1.3*smilevector[i];
