@@ -30,6 +30,10 @@
 		748213FC1AAE70FC00581CE6 /* StarifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 748213FB1AAE70FC00581CE6 /* StarifyTests.m */; };
 		748BBB861AB54B69001C296E /* smileface.txt in Resources */ = {isa = PBXBuildFile; fileRef = 748BBB851AB54B69001C296E /* smileface.txt */; };
 		748BBB881AB6558F001C296E /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748BBB871AB6558F001C296E /* opencv2.framework */; };
+		748BBB8B1AB69D0E001C296E /* launching_960.png in Resources */ = {isa = PBXBuildFile; fileRef = 748BBB8A1AB69D0E001C296E /* launching_960.png */; };
+		748BBB8D1AB69F32001C296E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748BBB8C1AB69F32001C296E /* QuartzCore.framework */; };
+		748BBB931AB6A735001C296E /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 748BBB921AB6A735001C296E /* camera.png */; };
+		748BBB951AB6A7B1001C296E /* gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = 748BBB941AB6A7B1001C296E /* gallery.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +89,10 @@
 		748213FB1AAE70FC00581CE6 /* StarifyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarifyTests.m; sourceTree = "<group>"; };
 		748BBB851AB54B69001C296E /* smileface.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = smileface.txt; sourceTree = "<group>"; };
 		748BBB871AB6558F001C296E /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		748BBB8A1AB69D0E001C296E /* launching_960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launching_960.png; sourceTree = "<group>"; };
+		748BBB8C1AB69F32001C296E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		748BBB921AB6A735001C296E /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		748BBB941AB6A7B1001C296E /* gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				748BBB881AB6558F001C296E /* opencv2.framework in Frameworks */,
+				748BBB8D1AB69F32001C296E /* QuartzCore.framework in Frameworks */,
 				746D595C1AAFA8FB00704A50 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +166,8 @@
 		748213D31AAE70FC00581CE6 = {
 			isa = PBXGroup;
 			children = (
+				748BBB8C1AB69F32001C296E /* QuartzCore.framework */,
+				748BBB891AB69CFF001C296E /* image */,
 				748BBB841AB54B57001C296E /* ref */,
 				746D595B1AAFA8FB00704A50 /* AssetsLibrary.framework */,
 				748BBB871AB6558F001C296E /* opencv2.framework */,
@@ -225,6 +236,16 @@
 				748BBB851AB54B69001C296E /* smileface.txt */,
 			);
 			name = ref;
+			sourceTree = "<group>";
+		};
+		748BBB891AB69CFF001C296E /* image */ = {
+			isa = PBXGroup;
+			children = (
+				748BBB8A1AB69D0E001C296E /* launching_960.png */,
+				748BBB941AB6A7B1001C296E /* gallery.png */,
+				748BBB921AB6A735001C296E /* camera.png */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,9 +329,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				748BBB861AB54B69001C296E /* smileface.txt in Resources */,
+				748BBB931AB6A735001C296E /* camera.png in Resources */,
 				748213EB1AAE70FC00581CE6 /* Main.storyboard in Resources */,
 				748213F01AAE70FC00581CE6 /* LaunchScreen.xib in Resources */,
+				748BBB8B1AB69D0E001C296E /* launching_960.png in Resources */,
 				748213ED1AAE70FC00581CE6 /* Images.xcassets in Resources */,
+				748BBB951AB6A7B1001C296E /* gallery.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/chaunceylu/Documents/iOS,
@@ -485,6 +510,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/chaunceylu/Documents/iOS,

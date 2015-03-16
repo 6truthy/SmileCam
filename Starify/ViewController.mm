@@ -25,37 +25,74 @@
     UIButton *pickFromLib, *takePhoto, *retake, *compare;
     UIImagePickerController *imagePicker;
     CGSize screenSize;
-    UIImageView *imageView, *originView;
+    UIImageView *imageView, *originView, *backgroundView;
     UISlider *slider;
     cv::Mat I1;
     std::vector<cv::Point2f> inputpoint;
+    UILabel *takePhotoLabel, *pickFromLibLabel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     screenSize = [[UIScreen mainScreen] bounds].size;
+//    int heightOffset20 = (double)20 / 568 * screenSize.height;
     int heightOffset40 = (double)40 / 568 * screenSize.height;
-    int heightOffset280 = (double)280 / 568 * screenSize.height;
-    int heightOffset320 = (double)320 / 568 * screenSize.height;
+    int heightOffset380 = (double)380 / 568 * screenSize.height;
+    int heightOffset420 = (double)420 / 568 * screenSize.height;
+    
     NSString *API_KEY = @"a5be9907f9aff665d502fa003d8128b9", *API_SECRET = @"0QB5uV-A_XjxzwTf-Z9KHqpGdZlNlxAd";
     imagePicker = [[UIImagePickerController alloc] init];
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.width / 360 * 480)];
     originView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.width / 360 * 480)];
+    backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
+    backgroundView.image = [UIImage imageNamed:@"launching_960.png"];
     pickFromLib = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     takePhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     retake = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     compare = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    takePhoto.backgroundColor = [UIColor whiteColor];
+    pickFromLib.backgroundColor = [UIColor whiteColor];
     slider = [[UISlider alloc] init];
     slider.frame = CGRectMake(0.0, 480, screenSize.width, heightOffset40);
-    [pickFromLib setTitle:@"从相册里选择" forState:UIControlStateNormal];
     [takePhoto setTitle:@"拍照" forState:UIControlStateNormal];
+    [pickFromLib setTitle:@"从相册里选择" forState:UIControlStateNormal];
+    takePhoto.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, screenSize.width / 2 - heightOffset40);
+    takePhoto.titleEdgeInsets = UIEdgeInsetsMake(0, heightOffset40, 0, 0);
+    [takePhoto setImage:[UIImage imageNamed:@"camera.png"] forState:UIControlStateNormal];
+    [pickFromLib setImage:[UIImage imageNamed:@"gallery.png"] forState:UIControlStateNormal];
+    [pickFromLib setTitleEdgeInsets:UIEdgeInsetsMake(0, heightOffset40, 0, 0)];
+    [pickFromLib setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, screenSize.width / 2 - heightOffset40)];
+    takePhoto.layer.cornerRadius = 10;
+    takePhoto.clipsToBounds = YES;
+    pickFromLib.layer.cornerRadius = 10;
+    pickFromLib.clipsToBounds = YES;
+    takePhotoLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenSize.width / 4 + heightOffset40, heightOffset420 + heightOffset40 / 2, screenSize.width / 2 - heightOffset40, heightOffset40)];
+    takePhotoLabel.text = @"拍照";
+    takePhotoLabel.textAlignment = NSTextAlignmentCenter;
+    pickFromLibLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenSize.width / 4 +  heightOffset40, heightOffset380, screenSize.width / 2 - heightOffset40, heightOffset40)];
+    pickFromLibLabel.text = @"从相册里选择";
+    pickFromLibLabel.textAlignment = NSTextAlignmentCenter;
+    pickFromLib.alpha = 0.0;
+    takePhoto.alpha = 0.0;
+    pickFromLibLabel.alpha = 0.0;
+    takePhotoLabel.alpha = 0.0;
+    pickFromLibLabel.textColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    takePhotoLabel.textColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    [UIView animateWithDuration:1.0f
+                     animations:^{
+                         takePhotoLabel.alpha = 1.0;
+                         takePhoto.alpha = 1.0;
+                         pickFromLibLabel.alpha = 1.0;
+                         pickFromLib.alpha = 1.0;
+                     }];
     [retake setTitle:@"重新选择" forState:UIControlStateNormal];
     [compare setTitle:@"对比原图" forState:UIControlStateNormal];
     [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:(UIControlEventTouchUpInside | UIControlEventTouchUpOutside)];
-    pickFromLib.frame = CGRectMake(screenSize.width / 3, heightOffset280, screenSize.width / 3, heightOffset40);
-    takePhoto.frame = CGRectMake(screenSize.width / 3, heightOffset320, screenSize.width / 3, heightOffset40);
+    pickFromLib.frame = CGRectMake(screenSize.width / 4, heightOffset380, screenSize.width / 2, heightOffset40);
+    takePhoto.frame = CGRectMake(screenSize.width / 4, heightOffset420 + heightOffset40 / 2, screenSize.width / 2, heightOffset40);
     retake.frame = CGRectMake(0.0, screenSize.height - heightOffset40, screenSize.width / 2, heightOffset40);
     compare.frame = CGRectMake(screenSize.width / 2, screenSize.height - heightOffset40, screenSize.width / 2, heightOffset40);
+    [self.view addSubview:backgroundView];
     [self.view addSubview:pickFromLib];
     [self.view addSubview:takePhoto];
     [self.view addSubview:imageView];
@@ -63,6 +100,9 @@
     [self.view addSubview:retake];
     [self.view addSubview:compare];
     [self.view addSubview:originView];
+    [self.view addSubview:takePhotoLabel];
+    [self.view addSubview:pickFromLibLabel];
+    
     slider.hidden = YES;
     retake.hidden = YES;
     originView.hidden = YES;
@@ -106,6 +146,11 @@
     slider.hidden = YES;
     retake.hidden = YES;
     compare.hidden = YES;
+    backgroundView.hidden = NO;
+    takePhoto.hidden = NO;
+    takePhotoLabel.hidden = NO;
+    pickFromLib.hidden = NO;
+    pickFromLibLabel.hidden = NO;
 }
 -(void)pickFromLibraryButtonPressed {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
@@ -203,7 +248,11 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     UIImage *sourceImage = info[UIImagePickerControllerOriginalImage];
     UIImage *imageToDisplay = [self fixOrientation:sourceImage];
-    
+    backgroundView.hidden = YES;
+    takePhoto.hidden = YES;
+    takePhotoLabel.hidden = YES;
+    pickFromLib.hidden = YES;
+    pickFromLibLabel.hidden = YES;
     // perform detection in background thread
     [self performSelectorInBackground:@selector(detectWithImage:) withObject:imageToDisplay];
     
@@ -212,6 +261,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
+    backgroundView.hidden = NO;
 }
 -(void) detectWithImage: (UIImage*) image {
     FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(image, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];

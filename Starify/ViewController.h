@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FaceppAPI.h"
+#import <QuartzCore/QuartzCore.h>
 
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
