@@ -401,6 +401,19 @@ using namespace std;
 vector<Point2f> smilevector;
 vector<Point2f> standardface;
 Mat hdx, hdy, mapx, mapy;
+
+Mat autoscale(Mat image)
+{
+    int m = image.rows, n = image.cols;
+    int maxl = max(m,n);
+    double scale = 320.0/maxl;
+    m*=scale;
+    n*=scale;
+    Mat output;
+    resize(image, output, cv::Size(m,n), 0,0, INTER_LINEAR);
+    return output;
+}
+
 inline double disBetweenPoint(Point2d p1, Point2d p2)
 {
     return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
