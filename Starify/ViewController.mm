@@ -409,7 +409,8 @@ Mat autoscale(Mat image)
 {
     int m = image.rows, n = image.cols;
     int maxl = max(m,n);
-    double scale = 250.0/maxl;
+    double scale = 320.0/maxl;
+    if (scale > 1) return image;
     m*=scale;
     n*=scale;
     Mat output;
