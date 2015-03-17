@@ -278,10 +278,10 @@
     backgroundView.hidden = NO;
 }
 -(void) detectWithImage: (UIImage*) image {
- //   UIImage *mirrorImage = [self UIImageFromCVMat:autoscale([self cvMatFromUIImage:image])];
-//    FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(mirrorImage, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];
+    UIImage *mirrorImage = [self UIImageFromCVMat:autoscale([self cvMatFromUIImage:image])];
+    FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(mirrorImage, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];
     
-        FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(image, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];
+//        FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(image, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];
     if (detectResult.success) {
         int face_count = (int)[[detectResult content][@"face"] count];
         if (face_count > 1) {
@@ -573,7 +573,7 @@ void ThinPlateSpline(const vector<Point2f> &pointsSrc,const vector<Point2f> &poi
     
 }
 
-Mat smile(Mat image,  double lamda)
+Mat smile(Mat &image,  double lamda)
 {
     
     
