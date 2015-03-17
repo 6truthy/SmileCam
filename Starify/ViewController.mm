@@ -42,8 +42,8 @@
     int heightOffset420 = (double)420 / 568 * screenSize.height;
     NSString *API_KEY = @"a5be9907f9aff665d502fa003d8128b9", *API_SECRET = @"0QB5uV-A_XjxzwTf-Z9KHqpGdZlNlxAd";
     imagePicker = [[UIImagePickerController alloc] init];
-    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenSize.width / 10, screenSize.height / 8, screenSize.width * 4 / 5, screenSize.width * 16 / 15)];
-    originView = [[UIImageView alloc] initWithFrame:CGRectMake(screenSize.width / 10, screenSize.height / 8, screenSize.width * 4 / 5, screenSize.width * 16 / 15)];
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenSize.width / 20, screenSize.height / 8, screenSize.width * 9 / 10, screenSize.width * 6 / 5)];
+    originView = [[UIImageView alloc] initWithFrame:CGRectMake(screenSize.width / 20, screenSize.height / 8, screenSize.width * 9 / 10, screenSize.width * 6 / 5)];
     backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     backgroundView.image = [UIImage imageNamed:@"launching_960.png"];
     pickFromLib = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -54,7 +54,7 @@
     takePhoto.backgroundColor = [UIColor whiteColor];
     pickFromLib.backgroundColor = [UIColor whiteColor];
     slider = [[UISlider alloc] init];
-    slider.frame = CGRectMake(screenSize.width / 10, screenSize.width * 16 / 15 + screenSize.height / 8, screenSize.width * 4 / 5, heightOffset40);
+    slider.frame = CGRectMake(screenSize.width / 20, screenSize.width * 6 / 5 + screenSize.height / 8, screenSize.width * 9 / 10, heightOffset40);
     [takePhoto setTitle:@"拍照" forState:UIControlStateNormal];
     [pickFromLib setTitle:@"从相册里选择" forState:UIControlStateNormal];
     takePhoto.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, screenSize.width / 2 - heightOffset40);
@@ -96,7 +96,10 @@
     takePhoto.frame = CGRectMake(screenSize.width / 4, heightOffset420 + heightOffset40 / 2, screenSize.width / 2, heightOffset40);
     retake.frame = CGRectMake(0.0, heightOffset40 / 2, screenSize.width / 2, heightOffset40);
     compare.frame = CGRectMake(screenSize.width / 2, heightOffset40 / 2, screenSize.width / 2, heightOffset40);
-    save.frame = CGRectMake(screenSize.width / 4, screenSize.width * 16 / 15 + screenSize.height / 8 + heightOffset40, screenSize.width / 2, heightOffset40);
+    if (screenSize.height > 480)
+        save.frame = CGRectMake(screenSize.width / 4, screenSize.width * 6 / 5 + screenSize.height / 8 + heightOffset40, screenSize.width / 2, heightOffset40);
+    else
+        save.frame = CGRectMake(screenSize.width / 4, screenSize.width * 6 / 5 + screenSize.height / 8 - heightOffset40, screenSize.width / 2, heightOffset40);
     [save setTitle:@"保存图片" forState:UIControlStateNormal];
     [self.view addSubview:backgroundView];
     [self.view addSubview:pickFromLib];
@@ -286,6 +289,7 @@
                                   cancelButtonTitle:@"OK!"
                                   otherButtonTitles:nil];
             [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            [self retakeButtonClicked];
         }
         else if (face_count == 0) {
             UIAlertView *alert = [[UIAlertView alloc]
@@ -295,6 +299,7 @@
                                   cancelButtonTitle:@"OK!"
                                   otherButtonTitles:nil];
             [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            [self retakeButtonClicked];
         }
         else {
             NSArray *landmarkKeys = [[NSArray alloc] initWithObjects:@"contour_chin",@"contour_left1",@"contour_left2",@"contour_left3",@"contour_left4",@"contour_left5",@"contour_left6",@"contour_left7",
