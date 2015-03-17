@@ -341,6 +341,8 @@
             initialize(I1,inputpoint);
             I2 = smile(I1, 0.8);
             [imageView setImage:[self UIImageFromCVMat:I2]];
+            imageView.frame = CGRectMake(screenSize.width / 20, screenSize.height / 8, screenSize.width * 9 / 10, screenSize.width * 9 / 10 * [self UIImageFromCVMat:I2].size.height / [self UIImageFromCVMat:I2].size.width);
+            originView.frame = CGRectMake(screenSize.width / 20, screenSize.height / 8, screenSize.width * 9 / 10, screenSize.width * 9 / 10 * [self UIImageFromCVMat:I2].size.height / [self UIImageFromCVMat:I2].size.width);
             slider.value = 0.8;
         }
     }
@@ -360,6 +362,8 @@
 - (void)sliderValueChanged {
     I2 = smile(I1, slider.value * 1.2);
     [imageView setImage:[self UIImageFromCVMat:I2]];
+    imageView.frame = CGRectMake(screenSize.width / 20, screenSize.height / 8, screenSize.width * 9 / 10, screenSize.width * 9 / 10 * [self UIImageFromCVMat:I2].size.height / [self UIImageFromCVMat:I2].size.width);
+    originView.frame = CGRectMake(screenSize.width / 20, screenSize.height / 8, screenSize.width * 9 / 10, screenSize.width * 9 / 10 * [self UIImageFromCVMat:I2].size.height / [self UIImageFromCVMat:I2].size.width);
 }
 -(void)compareButtonUp {
     originView.hidden = YES;
