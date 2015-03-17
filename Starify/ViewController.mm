@@ -22,38 +22,39 @@
 @end
 
 @implementation ViewController {
-    UIButton *pickFromLib, *takePhoto, *retake, *compare;
+    UIButton *pickFromLib, *takePhoto, *retake, *compare, *save;
     UIImagePickerController *imagePicker;
     CGSize screenSize;
     UIImageView *imageView, *originView, *backgroundView;
     UISlider *slider;
-    cv::Mat I1;
+    cv::Mat I1, I2;
     std::vector<cv::Point2f> inputpoint;
     UILabel *takePhotoLabel, *pickFromLibLabel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor grayColor];
     screenSize = [[UIScreen mainScreen] bounds].size;
 //    int heightOffset20 = (double)20 / 568 * screenSize.height;
     int heightOffset40 = (double)40 / 568 * screenSize.height;
     int heightOffset380 = (double)380 / 568 * screenSize.height;
     int heightOffset420 = (double)420 / 568 * screenSize.height;
-    
     NSString *API_KEY = @"a5be9907f9aff665d502fa003d8128b9", *API_SECRET = @"0QB5uV-A_XjxzwTf-Z9KHqpGdZlNlxAd";
     imagePicker = [[UIImagePickerController alloc] init];
-    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.width / 360 * 480)];
-    originView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.width / 360 * 480)];
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenSize.width / 10, screenSize.height / 8, screenSize.width * 4 / 5, screenSize.width * 16 / 15)];
+    originView = [[UIImageView alloc] initWithFrame:CGRectMake(screenSize.width / 10, screenSize.height / 8, screenSize.width * 4 / 5, screenSize.width * 16 / 15)];
     backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
     backgroundView.image = [UIImage imageNamed:@"launching_960.png"];
     pickFromLib = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     takePhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     retake = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     compare = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     takePhoto.backgroundColor = [UIColor whiteColor];
     pickFromLib.backgroundColor = [UIColor whiteColor];
     slider = [[UISlider alloc] init];
-    slider.frame = CGRectMake(0.0, 480, screenSize.width, heightOffset40);
+    slider.frame = CGRectMake(screenSize.width / 10, screenSize.width * 16 / 15 + screenSize.height / 8, screenSize.width * 4 / 5, heightOffset40);
     [takePhoto setTitle:@"拍照" forState:UIControlStateNormal];
     [pickFromLib setTitle:@"从相册里选择" forState:UIControlStateNormal];
     takePhoto.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, screenSize.width / 2 - heightOffset40);
@@ -76,6 +77,9 @@
     takePhoto.alpha = 0.0;
     pickFromLibLabel.alpha = 0.0;
     takePhotoLabel.alpha = 0.0;
+    [retake setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [compare setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [save setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     pickFromLibLabel.textColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
     takePhotoLabel.textColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
     [UIView animateWithDuration:1.0f
@@ -90,8 +94,10 @@
     [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:(UIControlEventTouchUpInside | UIControlEventTouchUpOutside)];
     pickFromLib.frame = CGRectMake(screenSize.width / 4, heightOffset380, screenSize.width / 2, heightOffset40);
     takePhoto.frame = CGRectMake(screenSize.width / 4, heightOffset420 + heightOffset40 / 2, screenSize.width / 2, heightOffset40);
-    retake.frame = CGRectMake(0.0, screenSize.height - heightOffset40, screenSize.width / 2, heightOffset40);
-    compare.frame = CGRectMake(screenSize.width / 2, screenSize.height - heightOffset40, screenSize.width / 2, heightOffset40);
+    retake.frame = CGRectMake(0.0, heightOffset40 / 2, screenSize.width / 2, heightOffset40);
+    compare.frame = CGRectMake(screenSize.width / 2, heightOffset40 / 2, screenSize.width / 2, heightOffset40);
+    save.frame = CGRectMake(screenSize.width / 4, screenSize.width * 16 / 15 + screenSize.height / 8 + heightOffset40, screenSize.width / 2, heightOffset40);
+    [save setTitle:@"保存图片" forState:UIControlStateNormal];
     [self.view addSubview:backgroundView];
     [self.view addSubview:pickFromLib];
     [self.view addSubview:takePhoto];
@@ -102,11 +108,12 @@
     [self.view addSubview:originView];
     [self.view addSubview:takePhotoLabel];
     [self.view addSubview:pickFromLibLabel];
-    
+    [self.view addSubview:save];
     slider.hidden = YES;
     retake.hidden = YES;
     originView.hidden = YES;
     compare.hidden = YES;
+    save.hidden = YES;
     [pickFromLib addTarget:self
                     action:@selector(pickFromLibraryButtonPressed)
           forControlEvents:UIControlEventTouchUpInside];
@@ -122,6 +129,9 @@
     [compare addTarget:self
                 action:@selector(compareButtonDown)
       forControlEvents:UIControlEventTouchDown];
+    [save addTarget:self
+             action:@selector(saveButtonClicked)
+   forControlEvents:UIControlEventTouchDown];
     [FaceppAPI initWithApiKey:API_KEY andApiSecret:API_SECRET andRegion:APIServerRegionCN];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -146,6 +156,7 @@
     slider.hidden = YES;
     retake.hidden = YES;
     compare.hidden = YES;
+    save.hidden = YES;
     backgroundView.hidden = NO;
     takePhoto.hidden = NO;
     takePhotoLabel.hidden = NO;
@@ -302,6 +313,10 @@
                                      @"right_eyebrow_lower_middle",@"right_eyebrow_lower_right_quarter",@"right_eyebrow_right_corner",@"right_eyebrow_upper_left_quarter",
                                      @"right_eyebrow_upper_middle",@"right_eyebrow_upper_right_quarter", nil];
             slider.hidden = NO;
+            retake.hidden = NO;
+            imageView.hidden = NO;
+            compare.hidden = NO;
+            save.hidden = NO;
 //            NSString *gender = [detectResult content][@"face"][0][@"attribute"][@"gender"][@"value"];
             NSString *currentFaceId = [detectResult content][@"face"][0][@"face_id"];
             FaceppResult *landmarkResult = [[FaceppAPI detection] landmarkWithFaceId:currentFaceId andType:FaceppLandmark83P];
@@ -319,9 +334,9 @@
             originView.image = image;
             I1 = [self cvMatFromUIImage:image];
             initialize(I1,inputpoint);
-            cv::Mat I2 = smile(I1, 1.3);
+            I2 = smile(I1, 0.8);
             [imageView setImage:[self UIImageFromCVMat:I2]];
-            slider.value = 1;
+            slider.value = 0.8;
         }
     }
     else {
@@ -332,14 +347,13 @@
                               cancelButtonTitle:@"OK!"
                               otherButtonTitles:nil];
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        [self retakeButtonClicked];
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    retake.hidden = NO;
-    imageView.hidden = NO;
-    compare.hidden = NO;
+
 }
 - (void)sliderValueChanged {
-    cv::Mat I2 = smile(I1, slider.value * 1.3);
+    I2 = smile(I1, slider.value * 1.2);
     [imageView setImage:[self UIImageFromCVMat:I2]];
 }
 -(void)compareButtonUp {
@@ -347,6 +361,23 @@
 }
 -(void)compareButtonDown {
     originView.hidden = NO;
+}
+-(void)saveButtonClicked {
+    UIImageWriteToSavedPhotosAlbum([self UIImageFromCVMat:I2], self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+}
+- (void)               image: (UIImage *) image
+    didFinishSavingWithError: (NSError *) error
+                 contextInfo: (void *) contextInfo
+{
+    if (!error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@""
+                              message:@"保存成功！"
+                              delegate:nil
+                              cancelButtonTitle:@"OK!"
+                              otherButtonTitles:nil];
+        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
