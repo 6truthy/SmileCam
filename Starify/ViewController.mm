@@ -278,8 +278,10 @@
     backgroundView.hidden = NO;
 }
 -(void) detectWithImage: (UIImage*) image {
-    UIImage *mirrorImage = [self UIImageFromCVMat:autoscale([self cvMatFromUIImage:image])];
-    FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(mirrorImage, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];
+ //   UIImage *mirrorImage = [self UIImageFromCVMat:autoscale([self cvMatFromUIImage:image])];
+//    FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(mirrorImage, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];
+    
+        FaceppResult *detectResult = [[FaceppAPI detection] detectWithURL:nil orImageData:UIImageJPEGRepresentation(image, 0.5) mode:FaceppDetectionModeNormal attribute:FaceppDetectionAttributeGender];
     if (detectResult.success) {
         int face_count = (int)[[detectResult content][@"face"] count];
         if (face_count > 1) {
@@ -407,11 +409,11 @@ Mat autoscale(Mat image)
 {
     int m = image.rows, n = image.cols;
     int maxl = max(m,n);
-    double scale = 320.0/maxl;
+    double scale = 250.0/maxl;
     m*=scale;
     n*=scale;
     Mat output;
-    resize(image, output, cv::Size(m,n), 0,0, INTER_LINEAR);
+    resize(image, output, cv::Size(n,m), 0,0, INTER_LINEAR);
     return output;
 }
 
@@ -580,7 +582,7 @@ Mat smile(Mat image,  double lamda)
     remap(image, warped, mapx+c*hdx, mapy+c*hdy, INTER_NEAREST, BORDER_REPLICATE);
     return warped;
 }
-void initialize(Mat image, vector<Point2f> inputpoint)
+void initialize(Mat &image, vector<Point2f> &inputpoint)
 {
     for (int i = 0; i<inputpoint.size(); i++)
     {
