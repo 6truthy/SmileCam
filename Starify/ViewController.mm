@@ -30,10 +30,13 @@
     cv::Mat I1, I2;
     std::vector<cv::Point2f> inputpoint;
     UILabel *takePhotoLabel, *pickFromLibLabel;
+    NSString *language;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    NSLog(@"%@",language);
     self.view.backgroundColor = [UIColor grayColor];
     screenSize = [[UIScreen mainScreen] bounds].size;
 //    int heightOffset20 = (double)20 / 568 * screenSize.height;
@@ -55,8 +58,14 @@
     pickFromLib.backgroundColor = [UIColor whiteColor];
     slider = [[UISlider alloc] init];
     slider.frame = CGRectMake(screenSize.width / 20, screenSize.width * 6 / 5 + screenSize.height / 8, screenSize.width * 9 / 10, heightOffset40);
-    [takePhoto setTitle:@"拍照" forState:UIControlStateNormal];
-    [pickFromLib setTitle:@"从相册里选择" forState:UIControlStateNormal];
+    if ([language isEqualToString:@"en"]) {
+        [takePhoto setTitle:@"Take Photo" forState:UIControlStateNormal];
+        [pickFromLib setTitle:@"Pick Gallery" forState:UIControlStateNormal];
+    }
+    else {
+        [takePhoto setTitle:@"拍照" forState:UIControlStateNormal];
+        [pickFromLib setTitle:@"从相册里选择" forState:UIControlStateNormal];
+    }
     takePhoto.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, screenSize.width / 2 - heightOffset40);
     takePhoto.titleEdgeInsets = UIEdgeInsetsMake(0, heightOffset40, 0, 0);
     [takePhoto setImage:[UIImage imageNamed:@"camera.png"] forState:UIControlStateNormal];
@@ -68,10 +77,20 @@
     pickFromLib.layer.cornerRadius = 10;
     pickFromLib.clipsToBounds = YES;
     takePhotoLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenSize.width / 4 + heightOffset40, heightOffset420 + heightOffset40 / 2, screenSize.width / 2 - heightOffset40, heightOffset40)];
-    takePhotoLabel.text = @"拍照";
+    if ([language isEqualToString:@"en"]) {
+        takePhotoLabel.text = @"Take Photo";
+    }
+    else {
+        takePhotoLabel.text = @"拍照";
+    }
     takePhotoLabel.textAlignment = NSTextAlignmentCenter;
     pickFromLibLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenSize.width / 4 +  heightOffset40, heightOffset380, screenSize.width / 2 - heightOffset40, heightOffset40)];
-    pickFromLibLabel.text = @"从相册里选择";
+    if ([language isEqualToString:@"en"]) {
+        pickFromLibLabel.text = @"Pick Gallery";
+    }
+    else {
+        pickFromLibLabel.text = @"从相册里选择";
+    }
     pickFromLibLabel.textAlignment = NSTextAlignmentCenter;
     pickFromLib.alpha = 0.0;
     takePhoto.alpha = 0.0;
@@ -89,8 +108,14 @@
                          pickFromLibLabel.alpha = 1.0;
                          pickFromLib.alpha = 1.0;
                      }];
-    [retake setTitle:@"重新选择" forState:UIControlStateNormal];
-    [compare setTitle:@"对比原图" forState:UIControlStateNormal];
+    if ([language isEqualToString:@"en"]) {
+        [retake setTitle:@"Choose Another" forState:UIControlStateNormal];
+        [compare setTitle:@"Compare Original" forState:UIControlStateNormal];
+    }
+    else {
+        [retake setTitle:@"重新选择" forState:UIControlStateNormal];
+        [compare setTitle:@"对比原图" forState:UIControlStateNormal];
+    }
     [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:(UIControlEventTouchUpInside | UIControlEventTouchUpOutside)];
     pickFromLib.frame = CGRectMake(screenSize.width / 4, heightOffset380, screenSize.width / 2, heightOffset40);
     takePhoto.frame = CGRectMake(screenSize.width / 4, heightOffset420 + heightOffset40 / 2, screenSize.width / 2, heightOffset40);
@@ -100,7 +125,12 @@
         save.frame = CGRectMake(screenSize.width / 4, screenSize.width * 6 / 5 + screenSize.height / 8 + heightOffset40, screenSize.width / 2, heightOffset40);
     else
         save.frame = CGRectMake(screenSize.width / 4, screenSize.width * 6 / 5 + screenSize.height / 8 - heightOffset40, screenSize.width / 2, heightOffset40);
-    [save setTitle:@"保存图片" forState:UIControlStateNormal];
+    if ([language isEqualToString:@"en"]) {
+        [save setTitle:@"Save Photo" forState:UIControlStateNormal];
+    }
+    else {
+        [save setTitle:@"保存图片" forState:UIControlStateNormal];
+    }
     [self.view addSubview:backgroundView];
     [self.view addSubview:pickFromLib];
     [self.view addSubview:takePhoto];
@@ -145,13 +175,24 @@
         imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         [self presentViewController:imagePicker animated:YES completion:nil];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"出错啦"
-                              message:@"读取摄像头失败"
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        if ([language isEqualToString:@"en"]) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Fail to open camera"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"出错啦"
+                                  message:@"读取摄像头失败"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
     }
 }
 -(void)retakeButtonClicked{
@@ -174,13 +215,25 @@
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"出错啦"
-                              message:@"读取相册失败"
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        if ([language isEqualToString:@"en"]) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Fail to open gallery"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"出错啦"
+                                  message:@"读取相册失败"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
     }
 }
 - (UIImage *)fixOrientation:(UIImage *)aImage {
@@ -285,23 +338,45 @@
     if (detectResult.success) {
         int face_count = (int)[[detectResult content][@"face"] count];
         if (face_count > 1) {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"出错啦"
-                                  message:@"镜头里太多脸，我都分不出来了！"
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK!"
-                                  otherButtonTitles:nil];
-            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            if ([language isEqualToString:@"en"]) {
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Error"
+                                      message:@"More than one faces detected!"
+                                      delegate:nil
+                                      cancelButtonTitle:@"OK!"
+                                      otherButtonTitles:nil];
+                [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"出错啦"
+                                      message:@"镜头里太多脸，我都分不出来了！"
+                                      delegate:nil
+                                      cancelButtonTitle:@"OK!"
+                                      otherButtonTitles:nil];
+                [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            }
             [self retakeButtonClicked];
         }
         else if (face_count == 0) {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"出错啦"
-                                  message:@"没在镜头里看到脸喔！"
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK!"
-                                  otherButtonTitles:nil];
-            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            if ([language isEqualToString:@"en"]) {
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Error"
+                                      message:@"No face detected!"
+                                      delegate:nil
+                                      cancelButtonTitle:@"OK!"
+                                      otherButtonTitles:nil];
+                [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle:@"出错啦"
+                                      message:@"没在镜头里看到脸喔！"
+                                      delegate:nil
+                                      cancelButtonTitle:@"OK!"
+                                      otherButtonTitles:nil];
+                [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+            }
             [self retakeButtonClicked];
         }
         else {
@@ -350,13 +425,24 @@
         }
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"出错啦"
-                              message:@"请检查网络设置"
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        if ([language isEqualToString:@"en"]) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Network failure. Please try again."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"出错啦"
+                                  message:@"请检查网络设置"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
         [self retakeButtonClicked];
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -382,13 +468,24 @@
                  contextInfo: (void *) contextInfo
 {
     if (!error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@""
-                              message:@"保存成功！"
-                              delegate:nil
-                              cancelButtonTitle:@"OK!"
-                              otherButtonTitles:nil];
-        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        if ([language isEqualToString:@"en"]) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@""
+                                  message:@"Save successful!"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@""
+                                  message:@"保存成功！"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK!"
+                                  otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
     }
 }
 - (void)didReceiveMemoryWarning {
